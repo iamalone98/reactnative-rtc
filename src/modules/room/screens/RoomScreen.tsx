@@ -69,7 +69,6 @@ export const RoomScreen = ({ route }: RoomScreenProps) => {
         setStream(newStream);
       },
       newStream => {
-        console.log(newStream);
         setMyStream(newStream);
       },
     );
