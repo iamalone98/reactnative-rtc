@@ -5,7 +5,7 @@ import { AuthDeps } from '../types';
 
 interface AuthState {
   token: string | null;
-  login: () => void;
+  login: () => Promise<void>;
 }
 
 export const authStore = async (deps: AuthDeps) => {

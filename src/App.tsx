@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, View, ViewStyle } from 'react-native';
 import Toast from 'react-native-toast-message';
 import { registerGlobals } from 'react-native-webrtc';
 import { initAppEnv } from './modules';
 import { Navigator } from './navigator/Navigator';
 
 registerGlobals();
+
+const containerStyle: ViewStyle = {
+  flex: 1,
+  backgroundColor: '#1f1c1d',
+  justifyContent: 'center',
+  alignItems: 'center',
+};
 
 export const App = () => {
   const [loading, setLoading] = useState(true);
@@ -20,7 +27,7 @@ export const App = () => {
 
   if (loading) {
     return (
-      <View style={{ flex: 1, backgroundColor: '#1f1c1d' }}>
+      <View style={containerStyle}>
         <ActivityIndicator size="large" color="#EB2F3D" />
       </View>
     );

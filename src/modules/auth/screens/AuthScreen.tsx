@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+  ActivityIndicator,
   Text,
   TextInput,
   TextStyle,
@@ -52,10 +53,13 @@ const buttonTextStyle: TextStyle = {
 export const AuthScreen = () => {
   const [email, setEmail] = useState('admin@gmail.com');
   const [password, setPassword] = useState('12345678');
+  const [loading, setLoading] = useState(false);
   const { login } = AppEnv.useAuthStore();
 
-  const onSignIn = () => {
-    login();
+  const onSignIn = async () => {
+    setLoading(true);
+    await login();
+    setLoading(false);
   };
 
   return (
@@ -76,7 +80,13 @@ export const AuthScreen = () => {
         placeholderTextColor={'#575757'}
       />
       <TouchableOpacity style={buttonStyle} onPress={onSignIn}>
-        <Text style={buttonTextStyle}>Sign in</Text>
+        <Text style={buttonTextStyle} disabled={loading}>
+          {loading ? (
+            <ActivityIndicator size="large" color="#1f1c1d" />
+          ) : (
+            'Sign in'
+          )}
+        </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
